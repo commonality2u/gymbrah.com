@@ -3,17 +3,13 @@ import { Section } from "@/components/section";
 import { BorderText } from "@/components/ui/border-number";
 import Link from "next/link";
 import { Users } from "lucide-react";
-import { getUserCount } from "@/actions/user/user-count";
 import { unstable_cache } from "next/cache";
 
 const getCachedStats = unstable_cache(
   async () => {
-    const result = await getUserCount();
-    const userCount = result?.data?.success ? result.data.data : 1;
-
     return {
       stars: 50,
-      userCount,
+      userCount: 1,
     };
   },
   ["stats"],

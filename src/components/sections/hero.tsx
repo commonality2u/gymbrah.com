@@ -4,7 +4,6 @@ import Link from "next/link";
 import AvatarCircles from "../ui/avatar-circles";
 import { Check } from "lucide-react";
 import Image from "next/image";
-import { getUserCount } from "@/actions/user/user-count";
 import { Icons } from "../icons";
 import { SubscribeInput } from "../ui/subscribe-input";
 
@@ -155,9 +154,6 @@ function HeroTitles() {
 }
 
 async function HeroCTA() {
-  const response = await getUserCount();
-  const count = response?.data?.data;
-
   return (
     <div className="relative mt-6 w-full flex justify-center">
       <SubscribeInput />
