@@ -13,8 +13,6 @@ import Link from "next/link";
 import OutlinedButton from "@/components/ui/outlined-button";
 import AvatarCircles from "@/components/ui/avatar-circles";
 import { avatars } from "./hero";
-import { getSubscriberCount } from "@/actions/subscribe-action";
-import { useEffect, useState as useStateEffect } from "react";
 import {
   MdFitnessCenter,
   MdPerson,
@@ -36,7 +34,7 @@ const features = [
       "Progress History",
     ],
     hrs: "Save 8 hours per month",
-    icon: <MdFitnessCenter className="w-8 h-8 text-cyan-600" />,
+    icon: <MdFitnessCenter className="w-8 h-8 text-yellow-600" />,
   },
   {
     id: "gym-membership-linking",
@@ -51,7 +49,7 @@ const features = [
       "Instant Workout Updates",
     ],
     hrs: "Save 6 hours per month",
-    icon: <MdPerson className="w-8 h-8 text-cyan-600" />,
+    icon: <MdPerson className="w-8 h-8 text-yellow-600" />,
   },
   {
     id: "supplements-tracker",
@@ -66,7 +64,7 @@ const features = [
       "Performance Insights",
     ],
     hrs: "Save 5 hours per month",
-    icon: <MdBreakfastDining className="w-8 h-8 text-cyan-600" />,
+    icon: <MdBreakfastDining className="w-8 h-8 text-yellow-600" />,
   },
   {
     id: "nutrition-tips",
@@ -81,7 +79,7 @@ const features = [
       "Goal-Specific Advice",
     ],
     hrs: "Save 7 hours per month",
-    icon: <MdFastfood className="w-8 h-8 text-cyan-600" />,
+    icon: <MdFastfood className="w-8 h-8 text-yellow-600" />,
   },
 ];
 
@@ -135,8 +133,8 @@ export function ServicesAthletes({
               <ul className="space-y-3">
                 {selectedFeature.benefits.map((benefit, index) => (
                   <li key={index} className="flex items-center gap-2">
-                    <div className="flex items-center gap-2 bg-cyan-500/10 rounded-full p-1">
-                      <CheckCheck className="h-4 w-4 rounded-full text-cyan-600" />
+                    <div className="flex items-center gap-2 bg-yellow-500/10 rounded-full p-1">
+                      <CheckCheck className="h-4 w-4 rounded-full text-yellow-600" />
                     </div>
                     {benefit}
                   </li>

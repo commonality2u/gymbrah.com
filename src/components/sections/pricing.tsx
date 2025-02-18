@@ -15,15 +15,12 @@ function PricingTier({ tier }: { tier: (typeof siteConfig.pricing)[0] }) {
     <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold">{tier.name}</CardTitle>
-          {tier.popular && (
-            <Badge
-              variant="secondary"
-              className="bg-violet-500/10 text-violet-600 hover:bg-violet-500/20"
-            >
-              🔥 Best value
+          <div className="flex items-center gap-2">
+            <CardTitle className="text-lg font-semibold">{tier.name}</CardTitle>
+            <Badge className="bg-amber-500/10 text-amber-600 hover:bg-amber-500/20">
+              Presale
             </Badge>
-          )}
+          </div>
         </div>
         <div className="mt-4">
           <div className="flex items-baseline">
@@ -81,6 +78,9 @@ function PricingTier({ tier }: { tier: (typeof siteConfig.pricing)[0] }) {
             {tier.cta}
           </Button>
         </Link>
+        <p className="text-sm text-muted-foreground mt-4 text-center italic">
+          Purchase now during presale and get onboarded when the app launches
+        </p>
       </div>
     </div>
   );

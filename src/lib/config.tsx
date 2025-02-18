@@ -149,7 +149,7 @@ export const siteConfig = {
   ],
   pricing: [
     {
-      name: "Made for Athletes",
+      name: "Athletes",
       price: 45, // lifetime
       currency: "$",
       anchor: 95,
@@ -165,7 +165,7 @@ export const siteConfig = {
       link: "https://book.stripe.com/00g7vf2SX2GZcRG008",
     },
     {
-      name: "Made for Fitness Creators",
+      name: "Fitness Creators",
       price: 495, // lifetime
       currency: "$",
       anchor: 995,
