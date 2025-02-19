@@ -15,6 +15,7 @@ import { getSubscriberCount } from "@/actions/subscribe-action";
 import { Loader2 } from "lucide-react";
 import { FAQ } from "@/components/sections/new/faq";
 import { Testimonials } from "@/components/sections/new/testimonials";
+import { WhoAmI } from "@/components/sections/new/whoami";
 
 export const revalidate = 3600; // revalidate every hour
 
@@ -36,6 +37,7 @@ export default async function Home() {
         <ServicesBusiness subscriberCount={subscriberCount} />
         <ServicesAthletes subscriberCount={subscriberCount} />
         <UseCases subscriberCount={subscriberCount} />
+        <WhoAmI />
         <Testimonials />
         <Pricing />
         <FAQ />

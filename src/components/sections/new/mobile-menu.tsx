@@ -10,7 +10,7 @@ import { GithubStars } from "../github-stars";
 import { Suspense } from "react";
 import OutlinedButton from "@/components/ui/outlined-button";
 import { Icons } from "@/components/icons";
-import { TwitterFollowers } from "./twitter";
+import { TwitterCard } from "./twitter";
 
 function SignInButton() {
   return (
@@ -101,7 +101,7 @@ export function MobileMenu() {
                 }}
               >
                 <Link href="https://x.com/FedericoFan" className="block">
-                  <TwitterFollowers />
+                  <TwitterCard />
                 </Link>
               </motion.div>
               <motion.div
