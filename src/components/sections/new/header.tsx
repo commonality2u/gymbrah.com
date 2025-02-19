@@ -5,13 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import { GithubStars } from "../github-stars";
-import { LogoIcon } from "../../logo";
 import OutlinedButton from "../../ui/outlined-button";
 import Image from "next/image";
+import { MobileMenu } from "./mobile-menu";
 
 function SignInButton() {
   return (
-    <Link href="/access" className="text-xs text-secondary underline">
+    <Link
+      href="/access"
+      className="text-xs text-secondary underline hidden md:block"
+    >
       <OutlinedButton
         className="text-xs h-6 bg-primary text-white"
         variant="secondary"
@@ -79,17 +82,19 @@ export function Header() {
               <Link
                 href={link.href!}
                 className={cn(
-                  "text-primary hover:underline underline-offset-4 transition-colors hidden sm:block",
+                  "text-primary hover:underline underline-offset-4 transition-colors hidden md:block",
                   link.className,
                   pathname?.endsWith(link.href) && "text-primary"
                 )}
                 key={link.href}
+                prefetch
               >
                 {link.label}
               </Link>
             )
           )}
         </div>
+        <MobileMenu />
       </div>
     </div>
   );
