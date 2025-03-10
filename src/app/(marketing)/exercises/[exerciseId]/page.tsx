@@ -41,7 +41,6 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Extract the exercise ID from the URL parameter
   const exerciseId = params.exerciseId.split("-")[0];
   const result = await getExerciseById({ id: exerciseId });
 
@@ -53,15 +52,49 @@ export async function generateMetadata(
   }
 
   const exercise = result.data.data;
+  const exerciseUrl = `/exercises/${params.exerciseId}`;
 
   return {
     title: `${exercise.name} - Exercise Guide & Instructions`,
     description: `Learn how to properly perform the ${exercise.name}. Target muscle: ${exercise.target}. Equipment needed: ${exercise.equipment}. Complete guide with instructions and tips.`,
+    alternates: {
+      canonical: exerciseUrl,
+    },
     openGraph: {
       title: `${exercise.name} - Exercise Guide`,
       description: `Detailed guide for ${exercise.name} targeting ${exercise.target}. Equipment: ${exercise.equipment}`,
       images: [{ url: exercise.gif_url }],
+      type: "article",
+      url: exerciseUrl,
     },
+  };
+}
+
+function generateExerciseStructuredData(exercise: any) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: exercise.name,
+    description: `How to perform the ${exercise.name} exercise targeting ${exercise.target} using ${exercise.equipment}`,
+    image: exercise.gif_url,
+    supply: [
+      {
+        "@type": "HowToSupply",
+        name: exercise.equipment,
+      },
+    ],
+    step: exercise.instructions.map((instruction: string, index: number) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      text: instruction,
+    })),
+    totalTime: "PT5M",
+    tool: [
+      {
+        "@type": "HowToTool",
+        name: exercise.equipment,
+      },
+    ],
   };
 }
 
@@ -84,6 +117,12 @@ async function ExercisePageContent({ exerciseId }: { exerciseId: string }) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateExerciseStructuredData(exercise)),
+        }}
+      />
       <Header />
       <div className="container max-w-4xl py-8">
         <article>

@@ -42,6 +42,9 @@ export const metadata: Metadata = constructMetadata({
     "exercise animations",
     "exercise instructions",
   ],
+  alternates: {
+    canonical: "/exercises",
+  },
   openGraph: {
     title: "Exercise Library - Browse Exercises with Instructions & Animations",
     description:
@@ -73,6 +76,23 @@ function LoadingSkeleton() {
       </Card>
     </div>
   );
+}
+
+function generateStructuredData(exercises: any[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: exercises.map((exercise, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Exercise",
+        name: exercise.name,
+        description: `${exercise.name} targeting ${exercise.target} using ${exercise.equipment}`,
+        image: exercise.gif_url,
+      },
+    })),
+  };
 }
 
 async function ExercisesPageWrapper({
@@ -128,6 +148,14 @@ async function ExercisesPageWrapper({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateStructuredData(exercisesResponse.data.data.exercises)
+          ),
+        }}
+      />
       <Header />
       <div className="py-8 max-w-screen-xl mx-auto">
         <h1 className="text-3xl font-bold mb-2 px-4">Exercise Library</h1>
