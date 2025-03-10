@@ -35,6 +35,8 @@ import {
 import { bodyParts } from "@/actions/exercises/bodyParts";
 import { useQueryState } from "nuqs";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { slugify } from "@/lib/utils";
 
 interface Exercise {
   id: string;
@@ -181,7 +183,15 @@ export function ExerciseTable({
             </TableHeader>
             <TableBody>
               {filteredExercises.map((exercise) => (
-                <TableRow key={exercise.id}>
+                <TableRow
+                  key={exercise.id}
+                  className="cursor-pointer hover:bg-muted/50"
+                  onClick={() =>
+                    router.push(
+                      `/exercises/${exercise.id}-${slugify(exercise.name)}`
+                    )
+                  }
+                >
                   <TableCell>
                     <Dialog>
                       <DialogTrigger asChild>
@@ -209,7 +219,12 @@ export function ExerciseTable({
                   </TableCell>
                   <TableCell className="font-medium capitalize">
                     <div>
-                      {exercise.name}
+                      <Link
+                        href={`/exercises/${slugify(exercise.name)}`}
+                        className="hover:text-primary transition-colors"
+                      >
+                        {exercise.name}
+                      </Link>
                       <div className="md:hidden flex flex-wrap gap-1 mt-1">
                         <Badge variant="outline" className="capitalize text-xs">
                           {exercise.body_part}
