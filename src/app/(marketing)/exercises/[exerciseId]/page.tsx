@@ -20,7 +20,7 @@ import { getSubscriberCount } from "@/actions/subscribe-action";
 export const revalidate = 3600; // Revalidate GIF URLs every hour
 
 interface Props {
-  params: { exerciseId: string };
+  params: { exerciseId: string } & Promise<any>;
 }
 
 export async function generateMetadata(

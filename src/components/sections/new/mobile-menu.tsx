@@ -30,6 +30,7 @@ export function MobileMenu() {
   const pathname = usePathname();
 
   const links = [
+    { href: "/exercises", label: "1,300+ Exercises", isSpecial: true },
     { href: "#business", label: "Business" },
     { href: "#athletes", label: "Athletes" },
     { href: "#pricing", label: "Pricing" },
@@ -81,8 +82,11 @@ export function MobileMenu() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "block mt-4 mb-4 text-primary hover:text-secondary",
-                      pathname?.endsWith(link.href) && "text-secondary"
+                      "block mt-4 mb-4 text-primary hover:text-primary/80 relative",
+                      pathname?.endsWith(link.href) &&
+                        "text-primary underline underline-offset-4",
+                      link.isSpecial &&
+                        "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:animate-pulse"
                     )}
                     onClick={() => setIsOpen(false)}
                   >

@@ -68,7 +68,7 @@ async function ExercisesPageWrapper({
     search?: string;
     target?: string;
     equipment?: string;
-  };
+  } & Promise<any>;
 }) {
   const subscriberCountResponse = await getSubscriberCount();
   const subscriberCount = subscriberCountResponse.success ? (
@@ -142,7 +142,7 @@ export default function ExercisesPage({
     search?: string;
     target?: string;
     equipment?: string;
-  };
+  } & Promise<any>;
 }) {
   return (
     <Suspense fallback={<LoadingSkeleton />}>

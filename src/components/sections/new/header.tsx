@@ -29,6 +29,11 @@ export function Header() {
   const pathname = usePathname();
 
   const links = [
+    {
+      href: "/exercises",
+      label: "1,300+ Exercises",
+      isSpecial: true,
+    },
     { href: "#business", label: "Business" },
     { href: "#athletes", label: "Athletes" },
     { href: "#pricing", label: "Pricing" },
@@ -84,7 +89,9 @@ export function Header() {
                 className={cn(
                   "text-primary hover:underline underline-offset-4 transition-colors hidden md:block",
                   link.className,
-                  pathname?.endsWith(link.href) && "text-primary"
+                  pathname?.endsWith(link.href) && "text-primary",
+                  link.isSpecial &&
+                    "relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:animate-pulse"
                 )}
                 key={link.href}
                 prefetch
