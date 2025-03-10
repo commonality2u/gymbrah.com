@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from "next";
 import { getExerciseById } from "@/actions/exercises/exercise-id";
+import { getExercises } from "@/actions/exercises/exercises-list";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -21,6 +22,19 @@ export const revalidate = 3600; // Revalidate GIF URLs every hour
 
 interface Props {
   params: { exerciseId: string } & Promise<any>;
+}
+
+export async function generateStaticParams() {
+  const exercisesResponse = await getExercises({ page: 1, limit: 1000 });
+  if (!exercisesResponse?.data?.success) {
+    return [];
+  }
+
+  return exercisesResponse.data.data.exercises.map((exercise: any) => ({
+    exerciseId: `${exercise.id}-${exercise.name
+      .toLowerCase()
+      .replace(/\s+/g, "-")}`,
+  }));
 }
 
 export async function generateMetadata(

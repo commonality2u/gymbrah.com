@@ -14,6 +14,22 @@ import { getExercises } from "@/actions/exercises/exercises-list";
 
 export const revalidate = 3600; // Revalidate GIF URLs every hour
 
+export async function generateStaticParams() {
+  const exercisesResponse = await getExercises({ page: 1, limit: 1000 });
+  if (!exercisesResponse?.data?.success) {
+    return [];
+  }
+
+  const exercises = exercisesResponse.data.data.exercises;
+  const bodyParts = [
+    ...new Set(exercises.map((exercise: any) => exercise.body_part)),
+  ] as string[];
+
+  return bodyParts.map((bodyPart) => ({
+    searchParams: { bodyPart },
+  }));
+}
+
 export const metadata: Metadata = constructMetadata({
   title: "Exercise Library - Browse Exercises with Instructions & Animations",
   description:
