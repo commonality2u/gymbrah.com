@@ -45,6 +45,14 @@ export const metadata: Metadata = constructMetadata({
   alternates: {
     canonical: "/exercises",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   openGraph: {
     title: "Exercise Library - Browse Exercises with Instructions & Animations",
     description:

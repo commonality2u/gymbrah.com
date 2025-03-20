@@ -4,7 +4,11 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
+      allow: [
+        "/",
+        "/exercises/", // Explicitly allow exercises directory
+      ],
+
       disallow: [
         "/api/", // Prevent crawling of API routes
         "/admin/", // Prevent crawling of admin pages if you have any

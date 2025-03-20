@@ -60,6 +60,14 @@ export async function generateMetadata(
     alternates: {
       canonical: exerciseUrl,
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       title: `${exercise.name} - Exercise Guide`,
       description: `Detailed guide for ${exercise.name} targeting ${exercise.target}. Equipment: ${exercise.equipment}`,
