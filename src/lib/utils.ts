@@ -98,3 +98,12 @@ export function slugify(text: string) {
     .replace(/^-+/, "") // Trim - from start of text
     .replace(/-+$/, ""); // Trim - from end of text
 }
+
+export function generateExerciseUrl(exercise: {
+  id: string | number;
+  name: string;
+}) {
+  return `/exercises/${exercise.id}-${exercise.name
+    .toLowerCase()
+    .replace(/\s+/g, "-")}`;
+}
